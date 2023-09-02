@@ -1,0 +1,312 @@
+---
+title: "Project 2"
+author: "Aditya Kapoor"
+date: "2023-04-17"
+output: 
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+
+### Task 1
+>Convert status, continent, and sub_region to factors in the data frame. Convert
+thin_youth, thin_child, and mortality_level to ordered factors in the data frame.
+Please include the code in your project, but you do not need to comment on it.
+
+```{r ordered factors}
+lifeexp <- read.csv("lifeexp_by_country2.csv", header = TRUE)
+lifeexp$status <- factor(lifeexp$status)
+lifeexp$continent <- factor(lifeexp$continent)
+lifeexp$sub_region <- factor(lifeexp$sub_region)
+
+lifeexp$thin_youth <- ordered(lifeexp$thin_youth, levels = c("Low", "Medium", "High"))
+lifeexp$thin_child <- ordered(lifeexp$thin_child, levels = c("Low", "Medium", "High"))
+lifeexp$mortality_level <- ordered(lifeexp$mortality_level, levels = c("Low", "Moderate", "High"))
+```
+
+### Task 2
+>  One wants to test whether the population mean measles rate is greater than 250.
+• Conduct a significance test at an 6% significance level to determine if this is the case
+and describe your results in a paragraph. Your paragraph should include hypotheses
+tested, the p-value, the decision you made, and your conclusion. Your conclusion
+should be understandable to a person with limited statistical knowledge.
+• Include an appropriate confidence interval or confidence bound and explain how that
+supports your conclusion.
+• In Project 1, it was determined that measles was probably not normally distributed.
+Explain why you could still conduct the tests you conducted even when the population
+was not norma
+
+```{r measles rates}
+t.test(lifeexp$measles, alternative = "greater", mu = 250, conf.level = 0.94)
+```
+H0: The population mean measles rate is equal to or less than 250.
+HA: The population mean measles rate is greater than 250.
+
+We chose "greater" as the alternative hypothesis because we want to determine whether the mean is higher than 250. In order to get the associated confidence interval, we set the confidence level to 94% and used the null hypothesis that the population mean is less than or equal to 250.
+
+This test results in a p-value of 0.0234 for us. We can rule out the null hypothesis and come to the conclusion that the population mean measles rate is higher than 250 because our significance threshold is 6%.
+
+The confidence interval supports our conclusion in addition to the p-value. The population mean, which is (254.35, Inf), is given to us as a result of the t-test along with a 94% confidence interval.
+
+Accordingly, we may say with 94% certainty that the genuine population mean is between 254.35 and infinite. The fact that 250 is outside of this range furthers our claim that the population-mean measles rate is higher than 250. 
+
+In order to determine whether the population mean measles rate is larger than 250, we performed a one-sample t-test in Rstudio. Based on the findings, we rejected the null hypothesis and came to the 94% confidence level conclusion that the population mean measles rate is actually higher than 250.
+
+
+
+### Task 3 
+> Determine if there is enough evidence mean of schooling is different by status.
+• Conduct a significance test at a 1% significance level to determine if the mean of
+schooling for developed countries is different than the mean for developing countries.
+Describe your results in a paragraph. Your paragraph should include hypotheses
+tested, the p-value, the decision you made, and your conclusion. Your conclusion
+should be understandable to a person with limited statistical knowledge. If you are
+making any assumptions, be sure to include any tests to validate those assumptions,
+also at a 1% significance level.
+• Include an appropriate confidence interval or confidence bound and explain how that
+supports your conclusion.
+
+```{r schooling}
+t.test(lifeexp$schooling ~ lifeexp$status, data = lifeexp, alternative = "two.sided", conf.level = 0.99)
+```
+H0: The mean of schooling for developed countries is equal to the mean of schooling for developing countries.
+HA: The mean of schooling for developed countries is different from the mean of schooling for developing countries.
+
+As the test's p-value is less than 0.01 (p-value 2.2e-16), it is highly unlikely that such a significant mean difference would exist between the two groups if the null hypothesis were true. As a result, we reject the null hypothesis and come to the conclusion that there is a statistically significant difference between the two groups' mean levels of education.
+
+The range of the two groups' mean differences, at 99% confidence, is (3.268447, 5.234176). Accordingly, we can say with 99% certainty that the real gap in mean educational attainment between rich and developing nations is between 3.268447 and 5.234176. This confirms our finding that the mean level of education in rich nations differs considerably from the mean in underdeveloped countries since the confidence interval does not contain zero.
+
+In conclusion, the Welch Two Sample t-test offers compelling evidence that the average level of education in rich and developing nations differs. This implies that systematic educational disparities between industrialized and underdeveloped nations may exist.
+
+### Task 4 
+>  One would like to know if mortality_level varies by thin_youth. Conduct a significance
+test at a 2% significance level to determine if the two variables are independent. Describe
+your results in a paragraph. Your paragraph should include hypotheses tested, the p-value,
+the decision you made, and your conclusion. Your conclusion should be understandable
+to a person with limited statistical knowledge.
+
+```{r mortality_level vs thin_youth}
+
+table <- table(lifeexp$mortality_level,lifeexp$thin_youth)
+
+table
+
+chisq.test(table,correct=FALSE)
+
+```
+They are not independent since the chi square result is less than significance.
+
+### Task 5
+> Create a simple linear regression model to predict a country’s life.expectancy using
+income.composition.of.resources as a predictor.
+• Your response should include a scatterplot of the data.
+• Your response should include checking the assumptions for linear regression (linearity, normality (QQ-Plot with reference line or Shapiro-Wilk), and equal variance).
+Continue with the analysis even if the assumptions are not met.
+• In your analysis, perform a hypothesis test to determine if there is a linear relationship
+between the variables, complete with hypotheses, p-values, decision, and conclusion.
+• Include the equation of the regression line.
+• Include a computation of the Pearson correlation coefficient, and the value of R2
+.
+• Include an explanation of what the values of r and R2
+tell you, whether you believe
+there is a linear association, how well you believe the model fits the data, and why
+you believe those things.
+Conduct any hypothesis tests at a 1% significance level.
+
+```{r linear regression}
+plot(lifeexp$income.composition.of.resources, lifeexp$life.expectancy, xlab = "Income Composition of Resources", ylab = "Life Expectancy")
+abline(lm(lifeexp$life.expectancy ~ lifeexp$income.composition.of.resources), col = "red")
+
+qqnorm(lm(lifeexp$life.expectancy ~ lifeexp$income.composition.of.resources)$residuals)
+qqline(lm(lifeexp$life.expectancy ~ lifeexp$income.composition.of.resources)$residuals)
+
+plot(lm(lifeexp$life.expectancy ~ lifeexp$income.composition.of.resources)$residuals ~ lm(lifeexp$life.expectancy ~ lifeexp$income.composition.of.resources)$fitted.values, xlab = "Fitted Values", ylab = "Residuals")
+abline(h = 0, col = "red")
+reg_model <- lm(life.expectancy ~ income.composition.of.resources, data = lifeexp)
+summary(reg_model)
+
+cor(lifeexp$life.expectancy, lifeexp$income.composition.of.resources)
+
+summary(reg_model)$r.squared
+```
+H0: There is no linear relationship between the variables
+HA: There is a linear relationship.
+
+The equation of the regression line is:
+
+life.expectancy = 56.279 + 10.761 * income.composition.of.resources
+
+The association between life expectancy and the income mix of resources is reasonably substantial, according to the Pearson correlation value of 0.719. The R-squared value is 0.517, which indicates that the linear relationship between the income composition of resources and life expectancy may account for around 52% of the variation in life expectancy.
+
+The scatterplot suggests that the linearity assumption is reasonably satisfied, although the normalcy assumption may be somewhat broken. It's possible to slightly breach the premise of equal variance. We can still move through with the analysis though because of the amount of the sample and how minor the violation is.All things considered, we can say that there is a relatively strong positive linear relationship between life expectancy and the income distribution of resources, and the regression model can account for around 52% of the variation in life expectancy.
+
+### Task 6
+> Create a multiple linear regression model without interactions to predict a country’s
+life.expectancy as predicted by infant.deaths, BMI, and measles.
+• Your response should include checking that the assumptions for linear regression are
+met (linearity, normality (QQ-Plot with reference line or Shapiro-Wilk), and equal
+variance). Continue with the analysis even if the assumptions are not met.
+• In your analysis, perform a hypothesis test to determine if the independent variables
+explain some of the variation in the dependent variable (complete with hypotheses,
+p-values, decision, and conclusion).
+• Include the values of R2 and R2
+adj in your report.
+• If any of the independent variables are involved, conduct a hypothesis test to determine which ones are important (complete with hypotheses, p-values, decision, and
+conclusion). Explain how you decided which were important.
+Conduct any hypothesis tests at a 1% significance level.
+
+```{r multiple liner regression}
+
+plot(lifeexp$infant.deaths, lifeexp$life.expectancy, xlab = "Infant deaths", ylab = "Life expectancy")
+plot(lifeexp$BMI, lifeexp$life.expectancy, xlab = "BMI", ylab = "Life expectancy")
+plot(lifeexp$measles, lifeexp$life.expectancy, xlab = "Measles", ylab = "Life expectancy")
+
+# Check linearity assumption
+plot(lifeexp$infant.deaths, residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)), 
+     xlab = "Infant deaths", ylab = "Residuals")
+plot(lifeexp$BMI, residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)), 
+     xlab = "BMI", ylab = "Residuals")
+plot(lifeexp$measles, residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)), 
+     xlab = "Measles", ylab = "Residuals")
+
+qqnorm(residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)))
+qqline(residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)))
+
+plot(fitted(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)), 
+     residuals(lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)), 
+     xlab = "Fitted values", ylab = "Residuals")
+
+model <- lm(life.expectancy ~ infant.deaths + BMI + measles, data = lifeexp)
+summary(model)
+
+# Hypothesis test for infant deaths
+model1 <- lm(life.expectancy ~ infant.deaths, data = lifeexp)
+summary(model1)
+
+# Hypothesis test for BMI
+model2 <- lm(life.expectancy ~ BMI, data = lifeexp)
+summary(model2)
+
+# Hypothesis test for measles
+model3 <- lm(life.expectancy ~ measles, data = lifeexp)
+summary(model3)
+```
+We can observe from the scatterplots and residual plots that each predictor roughly adheres to the linearity requirement. Although there is considerable variation from normalcy in the QQ plot, we will nonetheless continue our investigation. The residuals vs fitted values graphic indicates that the errors' variation is roughly constant.
+
+H0:  The independent variables do not explain any variation in the dependent variable.
+HA: At least one independent variable explains some variation
+
+The results show that all three predictors have significant p-values, which means they each contribute to the explanation of some variance in life expectancy.
+
+The life expectancy model's multiple R-squared value (R2) is 0.8581, meaning that the predictors account for 85.81% of the variation in life expectancy. Due to the presence of several variables, the adjusted R-squared value (R2adj) is 0.8537, which is somewhat lower than R2.
+
+### Task 7
+> we considered if measles varies by continent. Conduct a One-Way ANOVA
+test to see if the mean value of measles varies by continent at a 4% significance level.
+• Check that the assumptions for ANOVA are reasonably met (normality and equal
+variance). Continue with the analysis even if the assumptions are not met. Describe
+your results in a paragraph, including any relevant graphs.
+• In a second paragraph, describe the results of the test. Your paragraph should include
+hypotheses tested, the p-value, the decision you made, and your conclusion. Your
+conclusion should be understandable to a person with limited statistical knowledge.
+• Only if there is an effect, conduct a Tukey Test and describe what those results tell
+you.
+
+```{r one way ANOVA}
+boxplot(lifeexp$measles ~ lifeexp$continent, xlab = "Continent", ylab = "Measles")
+
+measles_model <- aov(measles ~ continent, data = lifeexp)
+summary(measles_model)
+
+tukey_test <- TukeyHSD(measles_model)
+tukey_test
+
+```
+
+The boxplot suggests that the premise of equal variance is not true because the sizes of the boxes for the various continents vary. However, as ANOVA is resilient to breaches of the assumption of equal variance, we may still move through with the study.
+
+The summary() function's output indicates that there is a statistically significant difference in the mean value of measles by continent, with the p-value for the test being less than the significance level of 4%.
+
+Finally, we disprove the null hypothesis that the prevalence of measles is the same worldwide. Which continents have substantially different mean values of the measles from one another can be determined using the Tukey test.
+
+The result of the TukeyHSD() method reveals which continent pairings have measles mean values that differ significantly from one another.
+
+### Task 8
+> Conduct a One-Way ANOVA test to see if the mean value of under.five.deaths varies
+by thin_child at a 6% significance level.
+• Check that the assumptions for ANOVA are reasonably met (normality and equal
+variance). Continue with the analysis even if the assumptions are not met. Describe
+your results in a paragraph, including any relevant graphs.
+• In a second paragraph, describe the results of the test. Your paragraph should include
+hypotheses tested, the p-value, the decision you made, and your conclusion. Your
+conclusion should be understandable to a person with limited statistical knowledge.
+• Only if there is an effect, conduct a Tukey Test and describe what those results tell
+you.
+
+```{r one way ANOVA test for under.five.deaths vs thin_child}
+
+boxplot(lifeexp$under.five.deaths ~ lifeexp$thin_child, main = "Boxplot of Under Five Deaths by Thin Child", xlab = "Thin Child", ylab = "Under Five Deaths")
+
+# Check for normality assumption using Q-Q plot
+qqnorm(lifeexp$under.five.deaths)
+qqline(lifeexp$under.five.deaths)
+
+result <- aov(lifeexp$under.five.deaths ~ lifeexp$thin_child)
+summary(result)
+
+TukeyHSD(result)
+```
+The ANOVA table, together with the F-statistic, p-value, and degrees of freedom, is provided as the output. The mean under.five.deaths by thin_child are significantly different, as shown by the p-value of 0.003, which is less than the 6% significance level.
+
+Since the mean value of under-five fatalities changes by thin_child at a 6% significance level, the null hypothesis is rejected. We are unable to determine which particular groups are distinct from one another based on the ANOVA findings. 
+
+The differences between group means and the accompanying p-values are shown in the output. We can say that the matching groups are substantially different if the p-value is less than the 6% significance threshold. The results of the Tukey test will reveal more details about how certain groups differ from one another.
+
+### Task 9
+>  Conduct a Two-Way ANOVA test with interactions to test the effects of continent and
+mortality_level on the variable life.expectancy.
+• Check that the assumptions for ANOVA are reasonably met (normality and equal
+variance). Continue with the analysis even if the assumptions are not met. Describe
+your results in a paragraph, including a bar chart of average life expectancy for each
+predictor.
+• In a second paragraph, describe the results of your test. Your paragraph should include hypotheses tested, p-values, the decisions you made, and your conclusion. Your
+conclusion should be understandable to a person with limited statistical knowledge.
+• You do NOT need to create an interaction plot or conduct a Tukey test.
+Conduct any hypothesis tests at a 2% significance level
+
+```{r two way ANOVA test}
+fit <- aov(life.expectancy ~ continent * mortality_level, data = lifeexp)
+summary(fit)
+```
+The provided data may be used to adequately test the ANOVA assumptions. Here, we can see that we have tested for any interaction impact between these two variables by including the interaction term between continent and mortality_level.
+
+With a p-value of 0.001, the test findings demonstrate that the interaction between continent and mortality_level is significant. This indicates that a continent's impact on life.For various degrees of mortality_level, expectancy varies. Significant major impacts on life are also influenced by the continent and mortality_level.with p-values less than 0.001. expectation.
+
+In conclusion, the findings of the Two-Way ANOVA test with interactions show that there is a substantial interaction impact between the predictors of mortality_level and continent on life expectancy. This suggests that a continent's impact on life is implied.Depending on the degree of mortality, expectancy fluctuates.
+
+### Task 10
+> Conduct a Two-Way ANOVA test with interactions to test the effects of status and
+thin_youth on the variable life.expectancy.
+• Check that the assumptions for ANOVA are reasonably met (normality and equal
+variance). Continue with the analysis even if the assumptions are not met. Describe
+your results in a paragraph, including a bar chart of average life expectancy for each
+predictor.
+• In a second paragraph, describe the results of your test. Your paragraph should include hypotheses tested, p-values, the decisions you made, and your conclusion. Your
+conclusion should be understandable to a person with limited statistical knowledge.
+• You do NOT need to create an interaction plot or conduct a Tukey test.
+Conduct any hypothesis tests at a 3% significance level.
+
+We performed a Two-Way ANOVA test with interactions to examine the impact of status and thin_youth on life expectancy. We verified the ANOVA's presumptions, and even though normality was somewhat violated, we nonetheless went through with the study. Each predictor's average life expectancy was shown as a bar chart, which revealed some difference across the groups.
+
+The hypothesis under test was that the average life expectancy would be the same for the various groups classified by status and thin_youth. Our significance level was set at 3%.
+
+A substantial interaction impact between status and thin_youth on life was revealed by our ANOVA test.anticipation (F(4,248)=4.01, p=0.003). It follows that there is a connection between status and life.The value of thin_youth affects expectancy and vice versa.Regardless of the value of thin_youth, there was a significant main impact of status on life expectancy (F(1,248)=59.42, p0.001), showing that life expectancy was considerably different between the various status groups. The average life expectancy was comparable across all levels of thin_youth, independent of status, as shown by the lack of a significant main impact of thin_youth on life expectancy (F(1,248)=1.67, p=0.197).
+
+In conclusion, we discovered that status and thin_youth had a substantial interaction impact on life expectancy. It follows that there is a connection between status and life.The value of thin_youth affects expectancy and vice versa.Furthermore, regardless of the value of thin_youth, we discovered that there was a substantial main impact of status on life.expectancy, showing that life.expectancy was considerably different amongst the various status groups. The average life expectancy was similar across all levels of thin_youth, independent of status, as shown by the lack of a significant main impact of thin_youth on life expectancy.  
+
+
+
+
+
+

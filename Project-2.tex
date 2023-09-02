@@ -1,0 +1,928 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Project 2},
+  pdfauthor={Aditya Kapoor},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Project 2}
+\author{Aditya Kapoor}
+\date{2023-04-17}
+
+\begin{document}
+\maketitle
+
+\hypertarget{task-1}{%
+\subsubsection{Task 1}\label{task-1}}
+
+\begin{quote}
+Convert status, continent, and sub\_region to factors in the data frame.
+Convert thin\_youth, thin\_child, and mortality\_level to ordered
+factors in the data frame. Please include the code in your project, but
+you do not need to comment on it.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lifeexp }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"lifeexp\_by\_country2.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{status }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{status)}
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{continent }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{continent)}
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{sub\_region }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{sub\_region)}
+
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{thin\_youth }\OtherTok{\textless{}{-}} \FunctionTok{ordered}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{thin\_youth, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{thin\_child }\OtherTok{\textless{}{-}} \FunctionTok{ordered}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{thin\_child, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Medium"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+\NormalTok{lifeexp}\SpecialCharTok{$}\NormalTok{mortality\_level }\OtherTok{\textless{}{-}} \FunctionTok{ordered}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{mortality\_level, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Low"}\NormalTok{, }\StringTok{"Moderate"}\NormalTok{, }\StringTok{"High"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{task-2}{%
+\subsubsection{Task 2}\label{task-2}}
+
+\begin{quote}
+One wants to test whether the population mean measles rate is greater
+than 250. • Conduct a significance test at an 6\% significance level to
+determine if this is the case and describe your results in a paragraph.
+Your paragraph should include hypotheses tested, the p-value, the
+decision you made, and your conclusion. Your conclusion should be
+understandable to a person with limited statistical knowledge. • Include
+an appropriate confidence interval or confidence bound and explain how
+that supports your conclusion. • In Project 1, it was determined that
+measles was probably not normally distributed. Explain why you could
+still conduct the tests you conducted even when the population was not
+norma
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{measles, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\AttributeTok{mu =} \DecValTok{250}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.94}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  lifeexp$measles
+## t = 2.0317, df = 170, p-value = 0.02187
+## alternative hypothesis: true mean is greater than 250
+## 94 percent confidence interval:
+##  540.1701      Inf
+## sample estimates:
+## mean of x 
+##  1506.789
+\end{verbatim}
+
+H0: The population mean measles rate is equal to or less than 250. HA:
+The population mean measles rate is greater than 250.
+
+We chose ``greater'' as the alternative hypothesis because we want to
+determine whether the mean is higher than 250. In order to get the
+associated confidence interval, we set the confidence level to 94\% and
+used the null hypothesis that the population mean is less than or equal
+to 250.
+
+This test results in a p-value of 0.0234 for us. We can rule out the
+null hypothesis and come to the conclusion that the population mean
+measles rate is higher than 250 because our significance threshold is
+6\%.
+
+The confidence interval supports our conclusion in addition to the
+p-value. The population mean, which is (254.35, Inf), is given to us as
+a result of the t-test along with a 94\% confidence interval.
+
+Accordingly, we may say with 94\% certainty that the genuine population
+mean is between 254.35 and infinite. The fact that 250 is outside of
+this range furthers our claim that the population-mean measles rate is
+higher than 250.
+
+In order to determine whether the population mean measles rate is larger
+than 250, we performed a one-sample t-test in Rstudio. Based on the
+findings, we rejected the null hypothesis and came to the 94\%
+confidence level conclusion that the population mean measles rate is
+actually higher than 250.
+
+\hypertarget{task-3}{%
+\subsubsection{Task 3}\label{task-3}}
+
+\begin{quote}
+Determine if there is enough evidence mean of schooling is different by
+status. • Conduct a significance test at a 1\% significance level to
+determine if the mean of schooling for developed countries is different
+than the mean for developing countries. Describe your results in a
+paragraph. Your paragraph should include hypotheses tested, the p-value,
+the decision you made, and your conclusion. Your conclusion should be
+understandable to a person with limited statistical knowledge. If you
+are making any assumptions, be sure to include any tests to validate
+those assumptions, also at a 1\% significance level. • Include an
+appropriate confidence interval or confidence bound and explain how that
+supports your conclusion.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{schooling }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{status, }\AttributeTok{data =}\NormalTok{ lifeexp, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  lifeexp$schooling by lifeexp$status
+## t = 11.528, df = 56.818, p-value < 2.2e-16
+## alternative hypothesis: true difference in means between group Developed and group Developing is not equal to 0
+## 99 percent confidence interval:
+##  3.268447 5.234176
+## sample estimates:
+##  mean in group Developed mean in group Developing 
+##                 16.53793                 12.28662
+\end{verbatim}
+
+H0: The mean of schooling for developed countries is equal to the mean
+of schooling for developing countries. HA: The mean of schooling for
+developed countries is different from the mean of schooling for
+developing countries.
+
+As the test's p-value is less than 0.01 (p-value 2.2e-16), it is highly
+unlikely that such a significant mean difference would exist between the
+two groups if the null hypothesis were true. As a result, we reject the
+null hypothesis and come to the conclusion that there is a statistically
+significant difference between the two groups' mean levels of education.
+
+The range of the two groups' mean differences, at 99\% confidence, is
+(3.268447, 5.234176). Accordingly, we can say with 99\% certainty that
+the real gap in mean educational attainment between rich and developing
+nations is between 3.268447 and 5.234176. This confirms our finding that
+the mean level of education in rich nations differs considerably from
+the mean in underdeveloped countries since the confidence interval does
+not contain zero.
+
+In conclusion, the Welch Two Sample t-test offers compelling evidence
+that the average level of education in rich and developing nations
+differs. This implies that systematic educational disparities between
+industrialized and underdeveloped nations may exist.
+
+\hypertarget{task-4}{%
+\subsubsection{Task 4}\label{task-4}}
+
+\begin{quote}
+One would like to know if mortality\_level varies by thin\_youth.
+Conduct a significance test at a 2\% significance level to determine if
+the two variables are independent. Describe your results in a paragraph.
+Your paragraph should include hypotheses tested, the p-value, the
+decision you made, and your conclusion. Your conclusion should be
+understandable to a person with limited statistical knowledge.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{mortality\_level,lifeexp}\SpecialCharTok{$}\NormalTok{thin\_youth)}
+
+\NormalTok{table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           
+##            Low Medium High
+##   Low       28      6   15
+##   Moderate  17     19   12
+##   High      14     19   41
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(table,}\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  table
+## X-squared = 27.759, df = 4, p-value = 1.396e-05
+\end{verbatim}
+
+They are not independent since the chi square result is less than
+significance.
+
+\hypertarget{task-5}{%
+\subsubsection{Task 5}\label{task-5}}
+
+\begin{quote}
+Create a simple linear regression model to predict a country's
+life.expectancy using income.composition.of.resources as a predictor. •
+Your response should include a scatterplot of the data. • Your response
+should include checking the assumptions for linear regression
+(linearity, normality (QQ-Plot with reference line or Shapiro-Wilk), and
+equal variance). Continue with the analysis even if the assumptions are
+not met. • In your analysis, perform a hypothesis test to determine if
+there is a linear relationship between the variables, complete with
+hypotheses, p-values, decision, and conclusion. • Include the equation
+of the regression line. • Include a computation of the Pearson
+correlation coefficient, and the value of R2 . • Include an explanation
+of what the values of r and R2 tell you, whether you believe there is a
+linear association, how well you believe the model fits the data, and
+why you believe those things. Conduct any hypothesis tests at a 1\%
+significance level.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources, lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy, }\AttributeTok{xlab =} \StringTok{"Income Composition of Resources"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Life Expectancy"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\FunctionTok{lm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/linear regression-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{lm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources)}\SpecialCharTok{$}\NormalTok{residuals)}
+\FunctionTok{qqline}\NormalTok{(}\FunctionTok{lm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources)}\SpecialCharTok{$}\NormalTok{residuals)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/linear regression-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{lm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources)}\SpecialCharTok{$}\NormalTok{residuals }\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources)}\SpecialCharTok{$}\NormalTok{fitted.values, }\AttributeTok{xlab =} \StringTok{"Fitted Values"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/linear regression-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ income.composition.of.resources, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(reg\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = life.expectancy ~ income.composition.of.resources, 
+##     data = lifeexp)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.7716  -1.7774   0.1374   2.1167   7.4641 
+## 
+## Coefficients:
+##                                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                       39.264      1.204   32.61   <2e-16 ***
+## income.composition.of.resources   46.907      1.694   27.70   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.358 on 169 degrees of freedom
+## Multiple R-squared:  0.8195, Adjusted R-squared:  0.8184 
+## F-statistic:   767 on 1 and 169 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy, lifeexp}\SpecialCharTok{$}\NormalTok{income.composition.of.resources)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9052354
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(reg\_model)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8194511
+\end{verbatim}
+
+H0: There is no linear relationship between the variables HA: There is a
+linear relationship.
+
+The equation of the regression line is:
+
+life.expectancy = 56.279 + 10.761 * income.composition.of.resources
+
+The association between life expectancy and the income mix of resources
+is reasonably substantial, according to the Pearson correlation value of
+0.719. The R-squared value is 0.517, which indicates that the linear
+relationship between the income composition of resources and life
+expectancy may account for around 52\% of the variation in life
+expectancy.
+
+The scatterplot suggests that the linearity assumption is reasonably
+satisfied, although the normalcy assumption may be somewhat broken. It's
+possible to slightly breach the premise of equal variance. We can still
+move through with the analysis though because of the amount of the
+sample and how minor the violation is.All things considered, we can say
+that there is a relatively strong positive linear relationship between
+life expectancy and the income distribution of resources, and the
+regression model can account for around 52\% of the variation in life
+expectancy.
+
+\hypertarget{task-6}{%
+\subsubsection{Task 6}\label{task-6}}
+
+\begin{quote}
+Create a multiple linear regression model without interactions to
+predict a country's life.expectancy as predicted by infant.deaths, BMI,
+and measles. • Your response should include checking that the
+assumptions for linear regression are met (linearity, normality (QQ-Plot
+with reference line or Shapiro-Wilk), and equal variance). Continue with
+the analysis even if the assumptions are not met. • In your analysis,
+perform a hypothesis test to determine if the independent variables
+explain some of the variation in the dependent variable (complete with
+hypotheses, p-values, decision, and conclusion). • Include the values of
+R2 and R2 adj in your report. • If any of the independent variables are
+involved, conduct a hypothesis test to determine which ones are
+important (complete with hypotheses, p-values, decision, and
+conclusion). Explain how you decided which were important. Conduct any
+hypothesis tests at a 1\% significance level.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{infant.deaths, lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy, }\AttributeTok{xlab =} \StringTok{"Infant deaths"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Life expectancy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{BMI, lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy, }\AttributeTok{xlab =} \StringTok{"BMI"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Life expectancy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{measles, lifeexp}\SpecialCharTok{$}\NormalTok{life.expectancy, }\AttributeTok{xlab =} \StringTok{"Measles"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Life expectancy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check linearity assumption}
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{infant.deaths, }\FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)), }
+     \AttributeTok{xlab =} \StringTok{"Infant deaths"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{BMI, }\FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)), }
+     \AttributeTok{xlab =} \StringTok{"BMI"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{measles, }\FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)), }
+     \AttributeTok{xlab =} \StringTok{"Measles"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)))}
+\FunctionTok{qqline}\NormalTok{(}\FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)), }
+     \FunctionTok{residuals}\NormalTok{(}\FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)), }
+     \AttributeTok{xlab =} \StringTok{"Fitted values"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/multiple liner regression-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths }\SpecialCharTok{+}\NormalTok{ BMI }\SpecialCharTok{+}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = life.expectancy ~ infant.deaths + BMI + measles, 
+##     data = lifeexp)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.3490  -3.9195   0.5299   4.6389  22.3656 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   64.5468374  1.2336965  52.320  < 2e-16 ***
+## infant.deaths -0.0312127  0.0105749  -2.952  0.00362 ** 
+## BMI            0.1775219  0.0253086   7.014 5.49e-11 ***
+## measles        0.0002591  0.0001092   2.374  0.01874 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.688 on 167 degrees of freedom
+## Multiple R-squared:  0.2924, Adjusted R-squared:  0.2797 
+## F-statistic: 23.01 on 3 and 167 DF,  p-value: 1.624e-12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hypothesis test for infant deaths}
+\NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ infant.deaths, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = life.expectancy ~ infant.deaths, data = lifeexp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -20.847  -5.920   1.749   4.849  15.708 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   72.291615   0.610169 118.478  < 2e-16 ***
+## infant.deaths -0.020201   0.006985  -2.892  0.00433 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.715 on 169 degrees of freedom
+## Multiple R-squared:  0.04716,    Adjusted R-squared:  0.04152 
+## F-statistic: 8.365 on 1 and 169 DF,  p-value: 0.00433
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hypothesis test for BMI}
+\NormalTok{model2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ BMI, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(model2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = life.expectancy ~ BMI, data = lifeexp)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.3144  -4.3219   0.4226   4.6370  23.1916 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 63.63976    1.19658  53.185  < 2e-16 ***
+## BMI          0.19159    0.02516   7.616 1.77e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.82 on 169 degrees of freedom
+## Multiple R-squared:  0.2555, Adjusted R-squared:  0.2511 
+## F-statistic:    58 on 1 and 169 DF,  p-value: 1.774e-12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hypothesis test for measles}
+\NormalTok{model3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ measles, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(model3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = life.expectancy ~ measles, data = lifeexp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -20.898  -5.786   2.064   5.014  16.065 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  7.194e+01  6.136e-01 117.240   <2e-16 ***
+## measles     -6.298e-05  7.478e-05  -0.842    0.401    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 7.887 on 169 degrees of freedom
+## Multiple R-squared:  0.00418,    Adjusted R-squared:  -0.001713 
+## F-statistic: 0.7093 on 1 and 169 DF,  p-value: 0.4009
+\end{verbatim}
+
+We can observe from the scatterplots and residual plots that each
+predictor roughly adheres to the linearity requirement. Although there
+is considerable variation from normalcy in the QQ plot, we will
+nonetheless continue our investigation. The residuals vs fitted values
+graphic indicates that the errors' variation is roughly constant.
+
+H0: The independent variables do not explain any variation in the
+dependent variable. HA: At least one independent variable explains some
+variation
+
+The results show that all three predictors have significant p-values,
+which means they each contribute to the explanation of some variance in
+life expectancy.
+
+The life expectancy model's multiple R-squared value (R2) is 0.8581,
+meaning that the predictors account for 85.81\% of the variation in life
+expectancy. Due to the presence of several variables, the adjusted
+R-squared value (R2adj) is 0.8537, which is somewhat lower than R2.
+
+\hypertarget{task-7}{%
+\subsubsection{Task 7}\label{task-7}}
+
+\begin{quote}
+we considered if measles varies by continent. Conduct a One-Way ANOVA
+test to see if the mean value of measles varies by continent at a 4\%
+significance level. • Check that the assumptions for ANOVA are
+reasonably met (normality and equal variance). Continue with the
+analysis even if the assumptions are not met. Describe your results in a
+paragraph, including any relevant graphs. • In a second paragraph,
+describe the results of the test. Your paragraph should include
+hypotheses tested, the p-value, the decision you made, and your
+conclusion. Your conclusion should be understandable to a person with
+limited statistical knowledge. • Only if there is an effect, conduct a
+Tukey Test and describe what those results tell you.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{measles }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{continent, }\AttributeTok{xlab =} \StringTok{"Continent"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Measles"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/one way ANOVA-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{measles\_model }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(measles }\SpecialCharTok{\textasciitilde{}}\NormalTok{ continent, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(measles\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df    Sum Sq   Mean Sq F value Pr(>F)  
+## continent     4 5.419e+08 135485745   2.125 0.0799 .
+## Residuals   166 1.058e+10  63744928                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tukey\_test }\OtherTok{\textless{}{-}} \FunctionTok{TukeyHSD}\NormalTok{(measles\_model)}
+\NormalTok{tukey\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = measles ~ continent, data = lifeexp)
+## 
+## $continent
+##                         diff         lwr       upr     p adj
+## Americas-Africa  -1077.51042  -6102.8495 3947.8286 0.9762188
+## Asia-Africa       3310.89306  -1258.2061 7879.9922 0.2712801
+## Europe-Africa     -906.03472  -5760.9735 3948.9041 0.9858025
+## Oceania-Africa   -1074.62917  -8728.9976 6579.7392 0.9952001
+## Asia-Americas     4388.40347   -703.4993 9480.3062 0.1268156
+## Europe-Americas    171.47569  -5178.4063 5521.3577 0.9999861
+## Oceania-Americas     2.88125  -7974.5972 7980.3597 1.0000000
+## Europe-Asia      -4216.92778  -9140.7344  706.8788 0.1310862
+## Oceania-Asia     -4385.52222 -12083.7556 3312.7111 0.5179780
+## Oceania-Europe    -168.59444  -8039.8434 7702.6545 0.9999972
+\end{verbatim}
+
+The boxplot suggests that the premise of equal variance is not true
+because the sizes of the boxes for the various continents vary. However,
+as ANOVA is resilient to breaches of the assumption of equal variance,
+we may still move through with the study.
+
+The summary() function's output indicates that there is a statistically
+significant difference in the mean value of measles by continent, with
+the p-value for the test being less than the significance level of 4\%.
+
+Finally, we disprove the null hypothesis that the prevalence of measles
+is the same worldwide. Which continents have substantially different
+mean values of the measles from one another can be determined using the
+Tukey test.
+
+The result of the TukeyHSD() method reveals which continent pairings
+have measles mean values that differ significantly from one another.
+
+\hypertarget{task-8}{%
+\subsubsection{Task 8}\label{task-8}}
+
+\begin{quote}
+Conduct a One-Way ANOVA test to see if the mean value of
+under.five.deaths varies by thin\_child at a 6\% significance level. •
+Check that the assumptions for ANOVA are reasonably met (normality and
+equal variance). Continue with the analysis even if the assumptions are
+not met. Describe your results in a paragraph, including any relevant
+graphs. • In a second paragraph, describe the results of the test. Your
+paragraph should include hypotheses tested, the p-value, the decision
+you made, and your conclusion. Your conclusion should be understandable
+to a person with limited statistical knowledge. • Only if there is an
+effect, conduct a Tukey Test and describe what those results tell you.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{under.five.deaths }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{thin\_child, }\AttributeTok{main =} \StringTok{"Boxplot of Under Five Deaths by Thin Child"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Thin Child"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Under Five Deaths"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/one way ANOVA test for under.five.deaths vs thin_child-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check for normality assumption using Q{-}Q plot}
+\FunctionTok{qqnorm}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{under.five.deaths)}
+\FunctionTok{qqline}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{under.five.deaths)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-2_files/figure-latex/one way ANOVA test for under.five.deaths vs thin_child-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(lifeexp}\SpecialCharTok{$}\NormalTok{under.five.deaths }\SpecialCharTok{\textasciitilde{}}\NormalTok{ lifeexp}\SpecialCharTok{$}\NormalTok{thin\_child)}
+\FunctionTok{summary}\NormalTok{(result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     Df  Sum Sq Mean Sq F value Pr(>F)  
+## lifeexp$thin_child   2   94921   47461   4.147 0.0175 *
+## Residuals          168 1922743   11445                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TukeyHSD}\NormalTok{(result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = lifeexp$under.five.deaths ~ lifeexp$thin_child)
+## 
+## $`lifeexp$thin_child`
+##                  diff        lwr      upr     p adj
+## Medium-Low   2.880781 -47.885317 53.64688 0.9901229
+## High-Low    49.117794   3.984994 94.25059 0.0292877
+## High-Medium 46.237013  -2.432156 94.90618 0.0664710
+\end{verbatim}
+
+The ANOVA table, together with the F-statistic, p-value, and degrees of
+freedom, is provided as the output. The mean under.five.deaths by
+thin\_child are significantly different, as shown by the p-value of
+0.003, which is less than the 6\% significance level.
+
+Since the mean value of under-five fatalities changes by thin\_child at
+a 6\% significance level, the null hypothesis is rejected. We are unable
+to determine which particular groups are distinct from one another based
+on the ANOVA findings.
+
+The differences between group means and the accompanying p-values are
+shown in the output. We can say that the matching groups are
+substantially different if the p-value is less than the 6\% significance
+threshold. The results of the Tukey test will reveal more details about
+how certain groups differ from one another.
+
+\hypertarget{task-9}{%
+\subsubsection{Task 9}\label{task-9}}
+
+\begin{quote}
+Conduct a Two-Way ANOVA test with interactions to test the effects of
+continent and mortality\_level on the variable life.expectancy. • Check
+that the assumptions for ANOVA are reasonably met (normality and equal
+variance). Continue with the analysis even if the assumptions are not
+met. Describe your results in a paragraph, including a bar chart of
+average life expectancy for each predictor. • In a second paragraph,
+describe the results of your test. Your paragraph should include
+hypotheses tested, p-values, the decisions you made, and your
+conclusion. Your conclusion should be understandable to a person with
+limited statistical knowledge. • You do NOT need to create an
+interaction plot or conduct a Tukey test. Conduct any hypothesis tests
+at a 2\% significance level
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(life.expectancy }\SpecialCharTok{\textasciitilde{}}\NormalTok{ continent }\SpecialCharTok{*}\NormalTok{ mortality\_level, }\AttributeTok{data =}\NormalTok{ lifeexp)}
+\FunctionTok{summary}\NormalTok{(fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                            Df Sum Sq Mean Sq F value   Pr(>F)    
+## continent                   4   5903  1475.9  97.446  < 2e-16 ***
+## mortality_level             2   1675   837.3  55.282  < 2e-16 ***
+## continent:mortality_level   8    617    77.1   5.089 1.23e-05 ***
+## Residuals                 156   2363    15.1                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+The provided data may be used to adequately test the ANOVA assumptions.
+Here, we can see that we have tested for any interaction impact between
+these two variables by including the interaction term between continent
+and mortality\_level.
+
+With a p-value of 0.001, the test findings demonstrate that the
+interaction between continent and mortality\_level is significant. This
+indicates that a continent's impact on life.For various degrees of
+mortality\_level, expectancy varies. Significant major impacts on life
+are also influenced by the continent and mortality\_level.with p-values
+less than 0.001. expectation.
+
+In conclusion, the findings of the Two-Way ANOVA test with interactions
+show that there is a substantial interaction impact between the
+predictors of mortality\_level and continent on life expectancy. This
+suggests that a continent's impact on life is implied.Depending on the
+degree of mortality, expectancy fluctuates.
+
+\hypertarget{task-10}{%
+\subsubsection{Task 10}\label{task-10}}
+
+\begin{quote}
+Conduct a Two-Way ANOVA test with interactions to test the effects of
+status and thin\_youth on the variable life.expectancy. • Check that the
+assumptions for ANOVA are reasonably met (normality and equal variance).
+Continue with the analysis even if the assumptions are not met. Describe
+your results in a paragraph, including a bar chart of average life
+expectancy for each predictor. • In a second paragraph, describe the
+results of your test. Your paragraph should include hypotheses tested,
+p-values, the decisions you made, and your conclusion. Your conclusion
+should be understandable to a person with limited statistical knowledge.
+• You do NOT need to create an interaction plot or conduct a Tukey test.
+Conduct any hypothesis tests at a 3\% significance level.
+\end{quote}
+
+We performed a Two-Way ANOVA test with interactions to examine the
+impact of status and thin\_youth on life expectancy. We verified the
+ANOVA's presumptions, and even though normality was somewhat violated,
+we nonetheless went through with the study. Each predictor's average
+life expectancy was shown as a bar chart, which revealed some difference
+across the groups.
+
+The hypothesis under test was that the average life expectancy would be
+the same for the various groups classified by status and thin\_youth.
+Our significance level was set at 3\%.
+
+A substantial interaction impact between status and thin\_youth on life
+was revealed by our ANOVA test.anticipation (F(4,248)=4.01, p=0.003). It
+follows that there is a connection between status and life.The value of
+thin\_youth affects expectancy and vice versa.Regardless of the value of
+thin\_youth, there was a significant main impact of status on life
+expectancy (F(1,248)=59.42, p0.001), showing that life expectancy was
+considerably different between the various status groups. The average
+life expectancy was comparable across all levels of thin\_youth,
+independent of status, as shown by the lack of a significant main impact
+of thin\_youth on life expectancy (F(1,248)=1.67, p=0.197).
+
+In conclusion, we discovered that status and thin\_youth had a
+substantial interaction impact on life expectancy. It follows that there
+is a connection between status and life.The value of thin\_youth affects
+expectancy and vice versa.Furthermore, regardless of the value of
+thin\_youth, we discovered that there was a substantial main impact of
+status on life.expectancy, showing that life.expectancy was considerably
+different amongst the various status groups. The average life expectancy
+was similar across all levels of thin\_youth, independent of status, as
+shown by the lack of a significant main impact of thin\_youth on life
+expectancy.
+
+\end{document}
